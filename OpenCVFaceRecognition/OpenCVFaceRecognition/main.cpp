@@ -1,4 +1,12 @@
 /*
+ * Copyright (c) 2014. Zirui Zhuang <zr.zz.alp[at]gmail[dot]com>.
+ * Released to public domain under terms of the GPLv3 license.
+ * 
+ *
+ *
+ */
+
+/*
  * Copyright (c) 2011. Philipp Wagner <bytefish[at]gmx[dot]de>.
  * Released to public domain under terms of the BSD Simplified license.
  *
@@ -24,6 +32,8 @@
 #include <fstream>
 #include <sstream>
 
+#pragma comment(lib,"opencv_highgui248d.lib")
+
 using namespace cv;
 using namespace std;
 
@@ -31,6 +41,7 @@ static void read_csv(const string& filename, vector<Mat>& images, vector<int>& l
     std::ifstream file(filename.c_str(), ifstream::in);
     if (!file) {
         string error_message = "No valid input file was given, please check the given filename.";
+		cerr << error_message << endl;
         CV_Error(CV_StsBadArg, error_message);
     }
     string line, path, classlabel;
@@ -47,6 +58,7 @@ static void read_csv(const string& filename, vector<Mat>& images, vector<int>& l
 
 int main(int argc, const char *argv[]) {
     // Check for valid command line arguments, print usage
+	cout << "Checking command line arguments" <<endl;
     // if no arguments were given.
     if (argc != 2) {
         cout << "usage: " << argv[0] << " <csv.ext>" << endl;
@@ -54,9 +66,13 @@ int main(int argc, const char *argv[]) {
     }
     // Get the path to your CSV.
     string fn_csv = string(argv[1]);
+	//Debug print fn_csv
+	cout << "fn_csv is: " << fn_csv <<endl;
+
     // These vectors hold the images and corresponding labels.
     vector<Mat> images;
     vector<int> labels;
+	cout << "vectors for images and labels are created" << endl;
     // Read in the data. This can fail if no valid
     // input filename is given.
     try {
@@ -66,6 +82,7 @@ int main(int argc, const char *argv[]) {
         // nothing more we can do
         exit(1);
     }
+	cout << "read csv successed" << endl;
     // Quit if there are not enough images for this demo.
     if(images.size() <= 1) {
         string error_message = "This demo needs at least 2 images to work. Please add more images to your data set!";
