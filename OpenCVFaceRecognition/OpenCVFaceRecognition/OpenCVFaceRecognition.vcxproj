@@ -138,7 +138,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="faceDetectExample.cpp" />
+    <ClCompile Include="CFaceDetector.h" />
+    <ClCompile Include="faceRecogExample.cpp" />
+    <ClCompile Include="CFaceDetector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
